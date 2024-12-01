@@ -5,9 +5,11 @@ namespace UI
     {
         public static void Main(string[] args)
         {
-            DynamicArray<int> array = new DynamicArray<int>(3);
-            array.Add(1);
-            array.Add(2);
+            DynamicArray<int> array = new(3)
+            {
+                1,
+                2
+            };
             Console.WriteLine(array);
             array.Add(3);
             Console.WriteLine(array);
@@ -15,6 +17,17 @@ namespace UI
             Console.WriteLine(array);
             array.Add(3);
             Console.WriteLine(array);
+            array.RemoveAt(0);
+            Console.WriteLine(array);
+            array.RemoveAt(0);
+            Console.WriteLine(array);
+            array.Add(2);
+            Console.WriteLine(array);
+            array.Insert(2, 100);
+            Console.WriteLine(array);
+            array.Insert(2, 1000);
+            Console.WriteLine(array);
+
         }
     }
 }

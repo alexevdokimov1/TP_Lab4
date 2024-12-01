@@ -1,78 +1,106 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Text;
 
 namespace DynamicArray
 {
-    public class DynamicArray<T>
+    public class DynamicArray<T> : IEnumerable<T>
     {
-        private int count = 0;
+        private int count;
         private int capacity;
         private T[] array;
 
-        public int Count {
-            get { return count; }
-        }
+        public int Count => count;
 
-        public int Capacity
+        public int Capacity => capacity;
+
+        public DynamicArray(int capacity = 20)
         {
-            get { return capacity; }
-        }
-
-        public DynamicArray (int capacity=20) {
             this.capacity = capacity;
             this.array = new T[capacity];
             this.count = 0;
         }
 
-        public void Add(T item) {
-            if (capacity < count+1)
-            {
-                T[] newArray = new T[count+1];
-                array.CopyTo(newArray, 0);
-                array = newArray;
-                array[count] = item;
-                count++;
-                capacity = count;
-            }
-            else
-            {
-                array[count] = item;
-                count++;
-            }
+        public void Add(T item)
+        {
+            if (count == capacity)
+                IncreaseCapacity(1);
+            array[count++] = item;
         }
 
         public void Add(IEnumerable<T> elements)
         {
-            throw new NotImplementedException();
+            foreach (var element in elements)
+            {
+                Add(element);
+            }
         }
 
-        public void Insert(T element, int position)
+        public void RemoveAt(int index)
         {
-            if (position > count) { 
-                count = position+1;
-                capacity = count;
-                T[] newArray = new T[count];
-                array.CopyTo(newArray, 0);
-                array = newArray;
-                array[count] = element;
-            }
-            else
+            if (index < 0 || index >= count)
             {
-                throw new NotImplementedException();
+                throw new ArgumentOutOfRangeException($"Индекс {index} вне массива");
             }
+
+            for (int i = index; i < count - 1; i++)
+            {
+                array[i] = array[i + 1];
+            }
+            array[--count] = default;
+        }
+
+        public void IncreaseCapacity(int n)
+        {
+            capacity = capacity + n;
+            T[] newArray = new T[capacity];
+            array.CopyTo(newArray, 0);
+            array = newArray;
+        }
+
+        public void Insert(int index, T item)
+        {
+            if (index < 0 || index > count)
+            {
+                throw new ArgumentOutOfRangeException($"Индекс {index} вне массива");
+            }
+
+            if (count == capacity)
+                IncreaseCapacity(1);
+
+            // Shift elements to the right
+            for (int i = count; i > index; i--)
+            {
+                array[i] = array[i - 1];
+            }
+
+            array[index] = item;
+            count++;
         }
 
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            for( int i = 0; i<count; i++)
-            {
+            StringBuilder stringBuilder = new();
+            for (int i = 0; i < count; i++)
                 stringBuilder.Append(array[i] + "\t");
-            }
             stringBuilder.Append('\n');
             stringBuilder.Append("Count " + count);
             stringBuilder.Append('\n');
             stringBuilder.Append("Capacity " + capacity);
             return stringBuilder.ToString();
         }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return array[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return new CustomEnumerator<T>(array);
+        }
+
     }
 }
