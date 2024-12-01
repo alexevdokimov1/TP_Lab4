@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35514.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP_Lab4", "TP_Lab4\TP_Lab4.csproj", "{35882BB4-A6F3-46DE-865B-FE1A9CCAEBE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicArray", "DynamicArray\DynamicArray.csproj", "{E572699E-62E9-4514-8C28-276555B6D44F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35882BB4-A6F3-46DE-865B-FE1A9CCAEBE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35882BB4-A6F3-46DE-865B-FE1A9CCAEBE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35882BB4-A6F3-46DE-865B-FE1A9CCAEBE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35882BB4-A6F3-46DE-865B-FE1A9CCAEBE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E572699E-62E9-4514-8C28-276555B6D44F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E572699E-62E9-4514-8C28-276555B6D44F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E572699E-62E9-4514-8C28-276555B6D44F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E572699E-62E9-4514-8C28-276555B6D44F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
